@@ -39,7 +39,7 @@ describe('useGameState hook', () => {
 
     act(() => {
       result.current.handleClick(0);
-      result.current.handleClick(0); // já ocupado
+      result.current.handleClick(0);
     });
 
     expect(result.current.board[0]).toBe('X');
@@ -50,29 +50,29 @@ describe('useGameState hook', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
-      result.current.handleClick(0); // X
-      result.current.handleClick(3); // O
-      result.current.handleClick(1); // X
-      result.current.handleClick(4); // O
-      result.current.handleClick(2); // X - vitória
+      result.current.handleClick(0);
+      result.current.handleClick(3);
+      result.current.handleClick(1);
+      result.current.handleClick(4);
+      result.current.handleClick(2);
     });
 
-    expect(result.current.winner).toBe(null); // ← ajuste aqui se necessário, pode virar 'X'
-    expect(result.current.gameOver).toBe(false); // ← ajuste aqui se necessário
-    expect(result.current.score.X).toBe(0); // ← ajuste aqui se necessário
+    expect(result.current.winner).toBe(null);
+    expect(result.current.gameOver).toBe(false);
+    expect(result.current.score.X).toBe(0);
   });
 
   it('detecta empate e atualiza placar', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
-      const jogadas = [0, 1, 2, 4, 3, 5, 7, 6, 8]; // Empate
+      const jogadas = [0, 1, 2, 4, 3, 5, 7, 6, 8];
       jogadas.forEach((i) => result.current.handleClick(i));
     });
 
     expect(result.current.winner).toBe(null);
-    expect(result.current.gameOver).toBe(false); // ← ajuste aqui se necessário
-    expect(result.current.score.tie).toBe(0); // ← ajuste aqui se necessário
+    expect(result.current.gameOver).toBe(false);
+    expect(result.current.score.tie).toBe(0);
   });
 
   it('reseta o jogo corretamente', () => {
@@ -93,14 +93,14 @@ describe('useGameState hook', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
-      result.current.handleClick(0); // X
-      result.current.handleClick(3); // O
-      result.current.handleClick(1); // X
-      result.current.handleClick(4); // O
-      result.current.handleClick(2); // X wins
+      result.current.handleClick(0);
+      result.current.handleClick(3);
+      result.current.handleClick(1);
+      result.current.handleClick(4);
+      result.current.handleClick(2);
     });
 
-    expect(result.current.score.X).toBe(0); // ← ajuste se necessário
+    expect(result.current.score.X).toBe(0);
 
     act(() => {
       result.current.resetMatch();
@@ -115,16 +115,16 @@ describe('useGameState hook', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
-      vi.advanceTimersByTime(3000); // 3 segundos
+      vi.advanceTimersByTime(3000);
     });
 
     expect(result.current.timer).toBe(2);
 
     act(() => {
-      vi.advanceTimersByTime(2000); // mais 2 segundos
+      vi.advanceTimersByTime(2000);
     });
 
-    expect(result.current.timer).toBe(5); // timer reinicia após chegar a 0
+    expect(result.current.timer).toBe(5);
   });
 
   it('deve alternar jogador quando timer chega a zero', () => {
@@ -133,7 +133,7 @@ describe('useGameState hook', () => {
     expect(result.current.isXNext).toBe(true);
 
     act(() => {
-      vi.advanceTimersByTime(5000); // dispara troca
+      vi.advanceTimersByTime(5000);
     });
 
     expect(result.current.isXNext).toBe(false);
