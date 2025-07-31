@@ -1,0 +1,19 @@
+# Ignore dependencies
+node_modules
+
+# Ignore build outputs
+dist
+
+# Ignore Docker-related files
+.dockerignore
+Dockerfile
+
+# Ignore Git-related files
+.git
+.gitignore
+
+# Ignore Vite-related files
+.vite
+
+# Ignore log files
+*.log
