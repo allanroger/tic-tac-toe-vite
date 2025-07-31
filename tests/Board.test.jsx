@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest'; // ok com Vitest
+import { describe, expect, it, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/react';
 import Board from '../src/components/Board';
