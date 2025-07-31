@@ -13,7 +13,7 @@ describe('useGameState hook', () => {
     vi.useRealTimers();
   });
 
-  it('inicia com estado padrão correto', () => {
+  it('starts with correct default state', () => {
     const { result } = renderHook(() => useGameState());
     expect(result.current.board).toEqual(Array(9).fill(null));
     expect(result.current.isXNext).toBe(true);
@@ -23,7 +23,7 @@ describe('useGameState hook', () => {
     expect(result.current.champion).toBe(null);
   });
 
-  it('realiza uma jogada válida e alterna jogador', () => {
+  it('performs a valid play and switches players', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
@@ -34,7 +34,7 @@ describe('useGameState hook', () => {
     expect(result.current.isXNext).toBe(false);
   });
 
-  it('não permite jogar em célula ocupada', () => {
+  it('does not allow playing in occupied cell', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
@@ -46,7 +46,7 @@ describe('useGameState hook', () => {
     expect(result.current.isXNext).toBe(false);
   });
 
-  it('detecta vitória e atualiza placar', () => {
+  it('detects victory and updates score', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
@@ -62,7 +62,7 @@ describe('useGameState hook', () => {
     expect(result.current.score.X).toBe(0);
   });
 
-  it('detecta empate e atualiza placar', () => {
+  it('detects tie and updates score', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
@@ -75,7 +75,7 @@ describe('useGameState hook', () => {
     expect(result.current.score.tie).toBe(0);
   });
 
-  it('reseta o jogo corretamente', () => {
+  it('resets the game correctly', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
@@ -89,7 +89,7 @@ describe('useGameState hook', () => {
     expect(result.current.gameOver).toBe(false);
   });
 
-  it('reseta a partida e zera os placares', () => {
+  it('resets the match and resets the scores', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
@@ -111,7 +111,7 @@ describe('useGameState hook', () => {
     expect(result.current.champion).toBe(null);
   });
 
-  it('timer deve contar regressivamente a cada segundo', () => {
+  it('timer should count down every second', () => {
     const { result } = renderHook(() => useGameState());
 
     act(() => {
@@ -127,7 +127,7 @@ describe('useGameState hook', () => {
     expect(result.current.timer).toBe(5);
   });
 
-  it('deve alternar jogador quando timer chega a zero', () => {
+  it('should switch player when timer reaches zero', () => {
     const { result } = renderHook(() => useGameState());
 
     expect(result.current.isXNext).toBe(true);
