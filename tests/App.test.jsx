@@ -8,13 +8,13 @@ describe('App', () => {
     localStorage.clear();
   });
 
-  it('renderiza o título principal', () => {
+  it('renders the main title', () => {
     render(<App />);
     const title = screen.getByText(/Jogo da Velha/i);
     expect(title).toBeInTheDocument();
   });
 
-  it('exibe os botões do menu e os inputs de cor ao abrir menu', async () => {
+  it('displays menu buttons and color inputs when opening menu', async () => {
     render(<App />);
     const menuButton = screen.getByRole('button', { name: /menu/i });
 
@@ -27,7 +27,7 @@ describe('App', () => {
     expect(screen.getByLabelText(/Cor Jogador 2/i)).toBeInTheDocument();
   });
 
-  it('alterna o modo escuro ao clicar no switch', async () => {
+  it('toggle dark mode when clicking the switch', async () => {
     render(<App />);
     const menuButton = screen.getByRole('button', { name: /menu/i });
 
@@ -47,13 +47,13 @@ describe('App', () => {
     });
   });
 
-  it('exibe o texto do jogador atual corretamente', () => {
+  it('displays current player text correctly', () => {
     render(<App />);
     const currentPlayer = screen.getByText(/Jogador atual:/i);
     expect(currentPlayer).toBeInTheDocument();
   });
 
-  it('botão reiniciar aparece corretamente e executa ação', () => {
+  it('restart button appears correctly and performs action', () => {
     render(<App />);
     const restartButton = screen.getByRole('button', { name: /Reiniciar/i });
     expect(restartButton).toBeInTheDocument();
